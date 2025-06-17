@@ -596,6 +596,7 @@ export default function App(): JSX.Element {
       setResetTimer(5);
     } else {
       setResetTimer(0);
+      setSuccessMessage("");
     }
   }, [mode]);
 
