@@ -762,7 +762,7 @@ export default function App(): JSX.Element {
             localStorage.setItem("user", JSON.stringify(registerResult.user));
             setUser(registerResult.user);
             setSuccessMessage("Account created successfully! Welcome aboard.");
-            setFormData(initialFormData);
+            // setFormData(initialFormData);
             setMock2FACode("");
             break;
 
@@ -785,7 +785,7 @@ export default function App(): JSX.Element {
             );
             setTimeout(() => {
               setMode("login");
-              setFormData(initialFormData);
+              // setFormData(initialFormData);
               setResetToken("");
             }, 2000);
             break;
@@ -1678,7 +1678,7 @@ export default function App(): JSX.Element {
                             : "login";
                       setMode(newMode);
                       setErrors({});
-                      setFormData(initialFormData);
+                      // setFormData(initialFormData);
                       setMock2FACode("");
                       setShow2FAInput(false);
                     }}
