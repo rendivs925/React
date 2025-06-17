@@ -608,6 +608,11 @@ export default function App(): JSX.Element {
     }
 
     if (resetTimer === 0 && mode === "reset" && !resetToken) {
+      setFormData((prev) => ({
+        ...prev,
+        password: "",
+        confirmPassword: "",
+      }));
       setMode("login");
       setSuccessMessage("");
     }
