@@ -593,7 +593,7 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     if (mode === "reset") {
-      setResetTimer(5);
+      setResetTimer(6);
     } else {
       setResetTimer(0);
       setSuccessMessage("");
@@ -1174,11 +1174,12 @@ export default function App(): JSX.Element {
               {/* Success Message Alert */}
               {successMessage && (
                 <div className="mb-6 p-4 bg-green-500/20 backdrop-blur-sm border border-green-500/30 rounded-xl">
-                  <p className="text-green-300 text-sm flex items-center space-x-2">
+                  <div className="text-green-300 text-sm flex items-center space-x-2">
                     <Icons.Check />
                     <span>{successMessage}</span>
-                  </p>
-                  {/* Password Reset Link (only shown after forgot password) */}
+                  </div>
+
+                  {/* Reset link (only in forgot mode) */}
                   {mode === "forgot" && resetToken && (
                     <button
                       onClick={handleResetLinkClick}
@@ -1187,6 +1188,19 @@ export default function App(): JSX.Element {
                       <Icons.Key />
                       <span>Reset Password Now</span>
                     </button>
+                  )}
+
+                  {/* Redirect timer message (only in reset mode) */}
+                  {mode === "reset" && resetToken && resetTimer > 0 && (
+                    <p className="mt-3 text-sm text-green-200 flex justify-between items-center">
+                      <span>Redirecting to login in {resetTimer} sec...</span>
+                      <span
+                        onClick={() => setResetTimer(0)}
+                        className="underline cursor-pointer hover:text-green-100 text-green-200"
+                      >
+                        Skip
+                      </span>
+                    </p>
                   )}
                 </div>
               )}
@@ -1650,20 +1664,6 @@ export default function App(): JSX.Element {
                     </span>
                   )}
                 </button>
-                {resetTimer > 0 && (
-                  <div>
-                    <p>
-                      Password reset successful. You’ll be redirected to login
-                      in {resetTimer} sec...{" "}
-                      <span
-                        onClick={() => setResetTimer(0)}
-                        className="underline cursor-pointer hover:text-white/100 text-white/80"
-                      >
-                        Skip
-                      </span>
-                    </p>
-                  </div>
-                )}
               </form>
               <div className="mt-6 text-center">
                 <p className="text-white/70">
