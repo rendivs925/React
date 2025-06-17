@@ -1650,9 +1650,9 @@ export default function App(): JSX.Element {
                     </span>
                   )}
                 </button>
-                {mode === "reset" && resetToken && resetTimer > 0 && (
-                  <div className="text-center mt-6">
-                    <p className="text-white/80 text-sm">
+                {resetTimer > 0 && (
+                  <div>
+                    <p>
                       Password reset successful. You’ll be redirected to login
                       in {resetTimer} sec...{" "}
                       <span
